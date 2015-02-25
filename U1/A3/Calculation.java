@@ -6,12 +6,10 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @date September 11 2012
  * @purpose Calculate the sum, product, diffrence and quotient of two double
  * @author matthewlanglois11
- * 
  */
 public class Calculation {
 
     /**
-     * 
      * @param args
      *            Program args
      * @throws ClassNotFoundException

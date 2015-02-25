@@ -6,48 +6,40 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public class Hangman {
 
-    // define some constants
-    private static final String[] category = new String[] { "Computers",
-            "Games", "TV", "Movies" };
-    private static final String[][] words = new String[][] {
-            { "Java", "Netbeans", "Eclipse" },
-            { "Halo", "Call of Duty", "Minecraft" },
-            { "Flashpoint", "Criminal Minds", "NCIS" },
-            { "Saving private ryan", "Letters from iwo jima", "Defiance" } };
-
-    public static void main(String[] args) throws ClassNotFoundException,
+    public static void main(final String[] args) throws ClassNotFoundException,
             InstantiationException, IllegalAccessException,
             UnsupportedLookAndFeelException {
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         // find a row and colom for the word to use
-        int row = new Random().nextInt(category.length);
-        int colom = new Random().nextInt(words[row].length);
+        final int row = new Random().nextInt(Hangman.category.length);
+        final int colom = new Random().nextInt(Hangman.words[row].length);
         // a variable containing the lives left
         int lives = 7;
         // find the word to compare the output to
-        String word = words[row][colom];
+        final String word = Hangman.words[row][colom];
         // create the default output
         String output = word.replaceAll("[A-Za-z$-]", "-");
         try {
             // put the user in a loop to keep guessing untill they win or loose
             while (true) {
                 // print some information for the user
-                System.out.println("Category: " + category[row]);
+                System.out.println("Category: " + Hangman.category[row]);
                 System.out.println("Word: " + output);
 
                 // allow them to guess
-                String input = JOptionPane
+                final String input = JOptionPane
                         .showInputDialog("Guesses remaining: " + lives
                                 + "\nGuess a letter: ");
                 // turn their guess into a string
-                String guess = Character.toString(input.charAt(0));
+                final String guess = Character.toString(input.charAt(0));
                 // check if the real word contains their guess
                 if (word.toLowerCase().contains(guess.toLowerCase())) {
                     // set up the new output
                     for (int i = 0; i < word.length(); i++) {
                         if (Character.toString(word.charAt(i))
                                 .equalsIgnoreCase(guess)) {
-                            StringBuilder builder = new StringBuilder(output);
+                            final StringBuilder builder = new StringBuilder(
+                                    output);
                             builder.replace(i, i + 1,
                                     Character.toString(word.charAt(i)));
                             output = builder.toString();
@@ -69,16 +61,16 @@ public class Hangman {
                     lives--;
                 }
                 // print out the hang man
-                printHangman(lives);
+                Hangman.printHangman(lives);
                 System.out.println("\n");
             }
-        } catch (Exception e) {
+        } catch (final Exception e) {
             JOptionPane.showMessageDialog(null, "Thanks for playing!");
         }
     }
 
     // print the lines based on the lives remaining
-    private static void printHangman(int lives) {
+    private static void printHangman(final int lives) {
         if (lives == 7) {
             return;
         } else if (lives == 6) {
@@ -102,4 +94,14 @@ public class Hangman {
             System.out.println("/ \\ ");
         }
     }
+
+    // define some constants
+    private static final String[] category = new String[] { "Computers",
+            "Games", "TV", "Movies" };
+
+    private static final String[][] words = new String[][] {
+            { "Java", "Netbeans", "Eclipse" },
+            { "Halo", "Call of Duty", "Minecraft" },
+            { "Flashpoint", "Criminal Minds", "NCIS" },
+            { "Saving private ryan", "Letters from iwo jima", "Defiance" } };
 }

@@ -1,59 +1,59 @@
 public class CellPhone {
 
-	// private variables to this class
-	private String carrier, type;
-	private double speed, memory;
-	private int numApps;
+    // private variables to this class
+    private String carrier, type;
+    private double speed, memory;
+    private int numApps;
 
-	// constructor for creating a phone object
-	public CellPhone(final String carrier, final String type, final double speed,
-			final double memory, final int num) {
-		this.carrier = carrier;
-		this.type = type;
-		this.memory = memory;
-		this.speed = speed;
-		this.numApps = num;
-	}
+    // constructor for creating a phone object
+    public CellPhone(final String carrier, final String type,
+            final double speed, final double memory, final int num) {
+        this.carrier = carrier;
+        this.type = type;
+        this.memory = memory;
+        this.speed = speed;
+        numApps = num;
+    }
 
-	// Setters
-	public void setCarrier(final String carrier) {
-		this.carrier = carrier;
-	}
+    public int getApps() {
+        return numApps;
+    }
 
-	public void setType(final String type) {
-		this.type = type;
-	}
+    // getters
+    public String getCarrier() {
+        return carrier;
+    }
 
-	public void setMemory(final double memory) {
-		this.memory = memory;
-	}
+    public double getMemory() {
+        return memory;
+    }
 
-	public void setSpeed(final double speed) {
-		this.speed = speed;
-	}
+    public double getSpeed() {
+        return speed;
+    }
 
-	public void setApps(final int num) {
-		this.numApps = num;
-	}
+    public String getType() {
+        return type;
+    }
 
-	// getters
-	public String getCarrier() {
-		return carrier;
-	}
+    public void setApps(final int num) {
+        numApps = num;
+    }
 
-	public String getType() {
-		return type;
-	}
+    // Setters
+    public void setCarrier(final String carrier) {
+        this.carrier = carrier;
+    }
 
-	public double getMemory() {
-		return memory;
-	}
+    public void setMemory(final double memory) {
+        this.memory = memory;
+    }
 
-	public double getSpeed() {
-		return speed;
-	}
+    public void setSpeed(final double speed) {
+        this.speed = speed;
+    }
 
-	public int getApps() {
-		return numApps;
-	}
+    public void setType(final String type) {
+        this.type = type;
+    }
 }

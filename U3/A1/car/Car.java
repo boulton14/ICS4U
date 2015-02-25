@@ -15,8 +15,15 @@ public class Car {
     // end variable decleration
 
     /**
+     * Default constructor
+     */
+    public Car() {
+        this("Java", "Java Car", "Large");
+    }
+
+    /**
      * The third constructor
-     * 
+     *
      * @param make
      *            The maker of the car
      * @param model
@@ -43,7 +50,7 @@ public class Car {
 
     /**
      * The second constructor with 3 parameters
-     * 
+     *
      * @param make
      * @param model
      * @param size
@@ -52,36 +59,29 @@ public class Car {
         this(make, model, 2000, 20000, "black", size);
     }
 
-    /**
-     * Default constructor
-     */
-    public Car() {
-        this("Java", "Java Car", "Large");
-    }
-
     // Start -- Getters -- used to fetch private variables in a controlable manner
     public String getColor() {
         return color;
     }
 
-    public int getPrice() {
-        return price;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public String getSize() {
-        return size;
+    public String getMake() {
+        return make;
     }
 
     public String getModel() {
         return model;
     }
 
-    public String getMake() {
-        return make;
+    public int getPrice() {
+        return price;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public int getYear() {
+        return year;
     }
 
     // End getters
@@ -99,9 +99,9 @@ public class Car {
     @Override
     public String toString() {
         // return a string containing information on the car
-        return "Car: " + getModel() + " made by " + getMake()
-                + ". The car is a " + getSize() + " size made in " + getYear()
-                + " for a price of $" + getPrice() + ". This car was a "
-                + getColor() + " car.";
+        return "Car: " + this.getModel() + " made by " + this.getMake()
+                + ". The car is a " + this.getSize() + " size made in "
+                + this.getYear() + " for a price of $" + this.getPrice()
+                + ". This car was a " + this.getColor() + " car.";
     }
 }

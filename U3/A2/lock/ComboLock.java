@@ -10,7 +10,7 @@ public class ComboLock {
 
     /**
      * Basic lock constructor
-     * 
+     *
      * @param one
      *            The first combo number
      * @param two
@@ -18,7 +18,7 @@ public class ComboLock {
      * @param three
      *            The third combo number
      */
-    public ComboLock(int one, int two, int three) {
+    public ComboLock(final int one, final int two, final int three) {
         this.one = one;
         this.two = two;
         this.three = three;
@@ -30,12 +30,12 @@ public class ComboLock {
         return one;
     }
 
-    public int getTwo() {
-        return two;
-    }
-
     public int getThree() {
         return three;
+    }
+
+    public int getTwo() {
+        return two;
     }
 
 }

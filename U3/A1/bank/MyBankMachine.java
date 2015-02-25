@@ -4,21 +4,19 @@ import javax.swing.JOptionPane;
 
 public class MyBankMachine {
 
-    // create an instance of the ATM
-    private static final ATM bank = new ATM("My Bank", 0);
-
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         while (true) {
-            String option = JOptionPane
+            final String option = JOptionPane
                     .showInputDialog("Would you like to:\n1. Deposit\n2. Withdraw\n3. View your balance.\n4. Set up intrest\n5. Exit");
             // switch through the users options
             switch (option) {
                 case "1":
                     // deposit
                     try {
-                        bank.deposit(Double.parseDouble(JOptionPane
-                                .showInputDialog("How much would you like to deposit?")));
-                    } catch (Exception e) {// failsafe
+                        MyBankMachine.bank
+                                .deposit(Double.parseDouble(JOptionPane
+                                        .showInputDialog("How much would you like to deposit?")));
+                    } catch (final Exception e) {// failsafe
                         if (e instanceof NumberFormatException) {
                             JOptionPane
                                     .showMessageDialog(null,
@@ -32,9 +30,10 @@ public class MyBankMachine {
                 case "2":
                     // withdraw
                     try {
-                        bank.withdraw(Double.parseDouble(JOptionPane
-                                .showInputDialog("How much would you like to withdraw?")));
-                    } catch (Exception e) {// failasfe
+                        MyBankMachine.bank
+                                .withdraw(Double.parseDouble(JOptionPane
+                                        .showInputDialog("How much would you like to withdraw?")));
+                    } catch (final Exception e) {// failasfe
                         if (e instanceof NumberFormatException) {
                             JOptionPane
                                     .showMessageDialog(null,
@@ -43,32 +42,32 @@ public class MyBankMachine {
                         }
                         JOptionPane.showMessageDialog(null,
                                 "You have exceeded you maximum withdraw limit of: "
-                                        + bank.getBalance());
+                                        + MyBankMachine.bank.getBalance());
                     }
                     break;
                 case "3":
                     // display the balance
-                    bank.displayBalance();
+                    MyBankMachine.bank.displayBalance();
                     break;
                 case "4":
                     // calculate intrest
-                    double start = Double
+                    final double start = Double
                             .parseDouble(JOptionPane
                                     .showInputDialog("How much would you like to start with?"));
-                    if (start > bank.getBalance()) {// failsafe to check start amount is good
+                    if (start > MyBankMachine.bank.getBalance()) {// failsafe to check start amount is good
                         JOptionPane.showMessageDialog(null,
                                 "You have exceeded you maximum balance of: "
-                                        + bank.getBalance());
+                                        + MyBankMachine.bank.getBalance());
                         continue;
                     }
-                    double rate = Double
+                    final double rate = Double
                             .parseDouble(JOptionPane
                                     .showInputDialog("What is the annual intrest rate"));
-                    int days = Integer
+                    final int days = Integer
                             .parseInt(JOptionPane
                                     .showInputDialog("How many days would you like to collect intrest?"));
-                    double intrest = start * Math.pow((1 + rate), days);
-                    bank.unsafeDeposit(intrest);
+                    final double intrest = start * Math.pow((1 + rate), days);
+                    MyBankMachine.bank.unsafeDeposit(intrest);
                     JOptionPane.showMessageDialog(null, "You have gained $"
                             + intrest + " of intrest over " + days + " days.");
                     break;
@@ -78,4 +77,7 @@ public class MyBankMachine {
             }
         }
     }
+
+    // create an instance of the ATM
+    private static final ATM bank = new ATM("My Bank", 0);
 }

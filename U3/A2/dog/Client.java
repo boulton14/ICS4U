@@ -8,7 +8,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public class Client {
 
-    public static void main(String[] args) throws ClassNotFoundException,
+    public static void main(final String[] args) throws ClassNotFoundException,
             InstantiationException, IllegalAccessException,
             UnsupportedLookAndFeelException {
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -17,35 +17,35 @@ public class Client {
         JOptionPane.showMessageDialog(null, "Two dogs will be created");
 
         // create a blank array of 2 dogs.
-        Dog[] dogs = new Dog[2];
+        final Dog[] dogs = new Dog[2];
 
         // set up the dogs information for all of the dogs
         for (int i = 0; i < dogs.length; i++) {
-            String name = JOptionPane.showInputDialog("What is the " + (i + 1)
-                    + " dogs name?");
-            String breed = JOptionPane.showInputDialog("What is the " + (i + 1)
-                    + " dogs breed?");
+            final String name = JOptionPane.showInputDialog("What is the "
+                    + (i + 1) + " dogs name?");
+            final String breed = JOptionPane.showInputDialog("What is the "
+                    + (i + 1) + " dogs breed?");
 
             // randomly apply some of the dogs variables
-            Random r = new Random();
+            final Random r = new Random();
             int initial_age = r.nextInt(15);
             int inital_hunger = r.nextInt(11);
             int initial_agression = r.nextInt(11);
 
             // verify the information with the user
-            String age = JOptionPane
+            final String age = JOptionPane
                     .showInputDialog("Dog "
                             + (i + 1)
                             + " is "
                             + initial_age
                             + " years old. Is that okay? (If yes type \"ok\" otherwise type the new age)");
-            String hunger = JOptionPane
+            final String hunger = JOptionPane
                     .showInputDialog("Dog "
                             + (i + 1)
                             + "'s hunger on a scale from 1-10 is "
                             + inital_hunger
                             + " . Is that okay? (If yes type \"ok\" otherwise type the new hunger level)");
-            String agression = JOptionPane
+            final String agression = JOptionPane
                     .showInputDialog("Dog "
                             + (i + 1)
                             + "'s agression on a scale from 1-10 is "

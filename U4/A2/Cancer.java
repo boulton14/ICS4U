@@ -6,83 +6,90 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Cancer {
-	// create the map of cells (+ = good - = cancer)
-	private static LinkedList<String> map = new LinkedList<String>();
+    public static void floodFill(final int row, final int col) {
+        // find the cancer cells recursivly
+        if (Cancer.map.get(row).charAt(col) == '-') {
+            Cancer.map.set(row, Cancer.map.get(row).replaceFirst("-", " "));
+            if (row - 1 >= 0 && col - 1 >= 0
+                    && col - 1 < Cancer.map.get(row - 1).length()) {
+                Cancer.floodFill(row - 1, col - 1);
+            }
+            if (row - 1 >= 0 && col < Cancer.map.get(row - 1).length()) {
+                Cancer.floodFill(row - 1, col);
+            }
+            if (row - 1 >= 0 && col + 1 < Cancer.map.get(row - 1).length()) {
+                Cancer.floodFill(row - 1, col + 1);
+            }
+            if (col - 1 >= 0 && col - 1 < Cancer.map.get(row).length()) {
+                Cancer.floodFill(row, col - 1);
+            }
+            if (col + 1 < Cancer.map.get(row).length()
+                    && col + 1 < Cancer.map.get(row).length()) {
+                Cancer.floodFill(row, col + 1);
+            }
+            if (row + 1 < Cancer.map.size() && col - 1 >= 0
+                    && col - 1 < Cancer.map.get(row + 1).length()) {
+                Cancer.floodFill(row + 1, col - 1);
+            }
+            if (row + 1 < Cancer.map.size()
+                    && col < Cancer.map.get(row + 1).length()) {
+                Cancer.floodFill(row + 1, col);
+            }
+            if (row + 1 < Cancer.map.size()
+                    && col + 1 < Cancer.map.get(row + 1).length()) {
+                Cancer.floodFill(row + 1, col + 1);
+            }
+        }
+    }
 
-	private static int count = 0;
+    public static void main(final String[] args) throws IOException {
+        // find the file in the same location as the compiled class
+        final File file = new File(QuoteReader.class.getProtectionDomain()
+                .getCodeSource().getLocation().getFile(), "cancer.txt");
 
-	public static void main(String[] args) throws IOException {
-		// find the file in the same location as the compiled class
-		File file = new File(QuoteReader.class.getProtectionDomain().getCodeSource().getLocation()
-				.getFile(), "cancer.txt");
+        // open the reader
+        final BufferedReader reader = new BufferedReader(new FileReader(file));
 
-		// open the reader
-		BufferedReader reader = new BufferedReader(new FileReader(file));
+        final ArrayList<String> lines = new ArrayList<String>();
 
-		ArrayList<String> lines = new ArrayList<String>();
+        // read the lines in the file
+        String s;
+        while ((s = reader.readLine()) != null) {
+            lines.add(s);
+        }
 
-		// read the lines in the file
-		String s;
-		while ((s = reader.readLine()) != null) {
-			lines.add(s);
-		}
+        // close the reader
+        reader.close();
 
-		// close the reader
-		reader.close();
+        // add the values to the map
+        for (int i = 0; i < lines.size(); i++) {
+            Cancer.map.add(lines.get(i));
+        }
 
-		// add the values to the map
-		for (int i = 0; i < lines.size(); i++) {
-			map.add(lines.get(i));
-		}
+        for (int y = 0; y < Cancer.map.size(); y++) {
+            for (int x = 0; x < Cancer.map.get(y).length(); x++) {
+                if (Cancer.map.get(y).charAt(x) == '-') {
+                    Cancer.floodFill(y, x);
+                    Cancer.count++;
+                }
+            }
+        }
+        Cancer.floodFill(0, 0);
+        System.out.println("There were " + Cancer.count
+                + " cancerous blobs \nHere is the cancer map.\n");
+        // print out the grid
+        for (int y = 0; y < Cancer.map.size(); y++) {
+            for (int x = 0; x < Cancer.map.get(y).length(); x++) {
+                System.out
+                        .print(Cancer.map.get(y).charAt(x) == ' ' ? '-' : '+');
+            }
+            System.out.println();
+        }
+    }
 
-		for (int y = 0; y < map.size(); y++) {
-			for (int x = 0; x < map.get(y).length(); x++) {
-				if (map.get(y).charAt(x) == '-') {
-					floodFill(y, x);
-					count++;
-				}
-			}
-		}
-		floodFill(0, 0);
-		System.out.println("There were " + count + " cancerous blobs \nHere is the cancer map.\n");
-		// print out the grid
-		for (int y = 0; y < map.size(); y++) {
-			for (int x = 0; x < map.get(y).length(); x++) {
-				System.out.print(map.get(y).charAt(x) == ' ' ? '-' : '+');
-			}
-			System.out.println();
-		}
-	}
+    // create the map of cells (+ = good - = cancer)
+    private static LinkedList<String> map = new LinkedList<String>();
 
-	public static void floodFill(int row, int col) {
-		// find the cancer cells recursivly
-		if (map.get(row).charAt(col) == '-') {
-			map.set(row, map.get(row).replaceFirst("-", " "));
-			if (row - 1 >= 0 && col - 1 >= 0 && col - 1 < map.get(row - 1).length()) {
-				floodFill(row - 1, col - 1);
-			}
-			if (row - 1 >= 0 && col < map.get(row - 1).length()) {
-				floodFill(row - 1, col);
-			}
-			if (row - 1 >= 0 && col + 1 < map.get(row - 1).length()) {
-				floodFill(row - 1, col + 1);
-			}
-			if (col - 1 >= 0 && col - 1 < map.get(row).length()) {
-				floodFill(row, col - 1);
-			}
-			if (col + 1 < map.get(row).length() && col + 1 < map.get(row).length()) {
-				floodFill(row, col + 1);
-			}
-			if (row + 1 < map.size() && col - 1 >= 0 && col - 1 < map.get(row + 1).length()) {
-				floodFill(row + 1, col - 1);
-			}
-			if (row + 1 < map.size() && col < map.get(row + 1).length()) {
-				floodFill(row + 1, col);
-			}
-			if (row + 1 < map.size() && col + 1 < map.get(row + 1).length()) {
-				floodFill(row + 1, col + 1);
-			}
-		}
-	}
+    private static int count = 0;
 
 }

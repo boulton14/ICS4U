@@ -1,46 +1,47 @@
 public class SimpleDate {
 
-	private int day;
+    private int day;
 
-	private int month;
+    private int month;
 
-	private int year;
+    private int year;
 
-	public SimpleDate(int day, int month, int year) throws Exception {
-		if (month < 1 || month > 12) {
-			throw new Exception("Month out of range");
-		}
-		if (day < 1 || day > 31) {
-			throw new Exception("Day out of range");
-		}
-	}
+    public SimpleDate(final int day, final int month, final int year)
+            throws Exception {
+        if (month < 1 || month > 12) {
+            throw new Exception("Month out of range");
+        }
+        if (day < 1 || day > 31) {
+            throw new Exception("Day out of range");
+        }
+    }
 
-	public void setDay(int day) {
-		this.day = day;
-	}
+    public int getDay() {
+        return day;
+    }
 
-	public void setMonth(int month) {
-		this.month = month;
-	}
+    public int getMonth() {
+        return month;
+    }
 
-	public void setYear(int year) {
-		this.year = year;
-	}
+    public int getYear() {
+        return year;
+    }
 
-	public int getDay() {
-		return day;
-	}
+    public void printDate() {
+        System.out.println(month + "/" + day + "/" + year);
+    }
 
-	public int getMonth() {
-		return month;
-	}
+    public void setDay(final int day) {
+        this.day = day;
+    }
 
-	public int getYear() {
-		return year;
-	}
+    public void setMonth(final int month) {
+        this.month = month;
+    }
 
-	public void printDate() {
-		System.out.println(month + "/" + day + "/" + year);
-	}
+    public void setYear(final int year) {
+        this.year = year;
+    }
 
 }
